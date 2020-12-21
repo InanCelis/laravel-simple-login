@@ -10,4 +10,12 @@ class Permission extends Model
 {
     // use NodeTrait;
     use HasFactory;
+
+    protected $table = 'permissions';
+
+    protected $fillable = [
+        'name', 
+        'permission', 
+        'description',
+    ];
 }

@@ -26,22 +26,6 @@ class PermissionSeeder extends Seeder
         $permission->save();
 
         $entities = [
-            ['Audit Trail'],
-            ['Balance'],
-            ['Course'],
-            ['Department'],
-            ['Fee'],
-            ['Fee Status'],
-            ['Fee Trail'],
-            ['Payment'],
-            ['Payment Type'],
-            ['Payment Trail'],
-            ['Profile'],
-            ['Role'],
-            ['Student'],
-            ['Student Year Level'],
-            ['Transaction'],
-            ['Transaction Status'],
             ['User'],
             ['User Type'],
         ];

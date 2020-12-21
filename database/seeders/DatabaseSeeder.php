@@ -14,5 +14,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        \App\Models\Permission::truncate();
+        \App\Models\Role::truncate();
+        \App\Models\PermissionRole::truncate();
+        \App\Models\Profile::truncate();
+        \App\Models\User::truncate();
+
+        $this->call(PermissionSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+
+        \App\Models\User::factory(50)->create();       
+        \App\Models\User::all()->each(function ($user) {
+            $user->users()->saveMany(\App\Models\Profile::factory(1)->make());
+        });
     }
 }

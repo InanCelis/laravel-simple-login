@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Profile::class);
     }
+
+    public function hasPermission($permission)
+    {
+        return $this->role->permissions()->of($permission)->first();
+    }
 }

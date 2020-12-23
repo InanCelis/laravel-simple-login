@@ -32,34 +32,37 @@ class PermissionSeeder extends Seeder
 
         foreach ($entities as $entity) {
 
-            $permission = new Permission();
-            $permission->key = $entity[0];
-            $permission->permission = 'read_'.Str::snake(Str::plural($entity[0]));
-            $permission->name = 'Read '.Str::plural($entity[0]);
-            $permission->description = '';
-            $permission->save();
+            $parentPermission = new Permission();
+            $parentPermission->key = $entity[0];
+            $parentPermission->permission = 'read_'.Str::snake(Str::plural($entity[0]));
+            $parentPermission->name = 'Read '.Str::plural($entity[0]);
+            $parentPermission->description = '';
+            $parentPermission->save();
 
-            $permission = new Permission();
-            $permission->key = $entity[0];
-            $permission->permission = 'create_'.Str::snake(Str::plural($entity[0]));
-            $permission->name = 'Create '.Str::plural($entity[0]);
-            $permission->description = '';
-            $permission->save();
+            $childrenPermission = new Permission();
+            $childrenPermission->key = $entity[0];
+            $childrenPermission->permission = 'create_'.Str::snake(Str::plural($entity[0]));
+            $childrenPermission->name = 'Create '.Str::plural($entity[0]);
+            $childrenPermission->description = '';
+            $childrenPermission->parent_id = $parentPermission->id;
+            $childrenPermission->save();
 
-            $permission = new Permission();
-            $permission->key = $entity[0];
-            $permission->permission = 'update_'.Str::snake(Str::plural($entity[0]));
-            $permission->name = 'Update '.Str::plural($entity[0]);
-            $permission->description = '';
-            $permission->save();
+            $childrenPermission = new Permission();
+            $childrenPermission->key = $entity[0];
+            $childrenPermission->permission = 'update_'.Str::snake(Str::plural($entity[0]));
+            $childrenPermission->name = 'Update '.Str::plural($entity[0]);
+            $childrenPermission->description = '';
+            $childrenPermission->parent_id = $parentPermission->id;
+            $childrenPermission->save();
 
-            $permission = new Permission();
-            $permission->key = $entity[0];
-            $permission->permission = 'delete_'.Str::snake(Str::plural($entity[0]));
-            $permission->name = 'Delete '.Str::plural($entity[0]);
-            $permission->description = '';
-            $permission->save();
-
+            $childrenPermission = new Permission();
+            $childrenPermission->key = $entity[0];
+            $childrenPermission->permission = 'delete_'.Str::snake(Str::plural($entity[0]));
+            $childrenPermission->name = 'Delete '.Str::plural($entity[0]);
+            $childrenPermission->description = '';
+            $childrenPermission->parent_id = $parentPermission->id;
+            $childrenPermission->save();
+            
         }
     }
 }

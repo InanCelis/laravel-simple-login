@@ -19,8 +19,7 @@ class CreatePermissionsTable extends Migration
             $table->string('name');
             $table->string('permission');
             $table->string('description');
-            // $table->boolean('access_level');
-            // $table->nestedSet();
+            $table->nestedSet();
             $table->timestamps();
             $table->softDeletes();
         });

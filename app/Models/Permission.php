@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Kalnoy\Nestedset\NodeTrait;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Permission extends Model
 {
-    // use NodeTrait;
-    use HasFactory;
+    use NodeTrait, HasFactory;
 
     protected $table = 'permissions';
 

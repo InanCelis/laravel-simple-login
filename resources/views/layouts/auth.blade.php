@@ -18,8 +18,11 @@
                 background-color: #7EBAEA;
                 margin-top: 140px;
             }
+            .fa {
+                margin-left: -12px;
+                margin-right: 5px;
+            }
         </style>
-
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -30,4 +33,12 @@
     </body>
     <script src="{{ asset('/components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $(document).on('submit', '#login', function(){
+                $('.sign-in').attr("disabled", true);
+                $('.loading').addClass("fa-spinner fa-spin");
+            });
+        });
+    </script>
 </html>

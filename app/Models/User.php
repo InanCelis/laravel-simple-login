@@ -48,9 +48,9 @@ class User extends Authenticatable
         : \Hash::make($value);
     }
 
-    public function users()
+    public function profile()
     {
-        return $this->hasMany(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 
     public function hasPermission($permission)

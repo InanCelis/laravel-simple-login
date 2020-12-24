@@ -34,8 +34,8 @@
     <script src="{{ asset('/components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script>
-        $(document).ready(function(){
-            $(document).on('submit', '#login', function(){
+        $(document).ready(function() {
+            $(document).on('submit', '#login', function() {
                 $('.sign-in').attr("disabled", true);
                 $('.loading').addClass("fa-spinner fa-spin");
             });

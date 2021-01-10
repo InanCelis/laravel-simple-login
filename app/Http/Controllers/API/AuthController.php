@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use App\Models\Profile;
+use App\Http\Resources\Profile as ProfileResource;
+
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,8 +34,8 @@ class AuthController extends Controller
         }
         
         $user = $request->user();
-
-		$tokenResult = $user->createToken('Personal Access Token');
+            
+        $tokenResult = $user->createToken('Personal Access Token');
 
         $token = $tokenResult->token;
         
@@ -41,6 +44,7 @@ class AuthController extends Controller
         return response()->json([
             'accessToken' => $tokenResult->accessToken,
             'tokenType' => 'Bearer',
+            'profile' => new ProfileResource($user->profile),
             'expiresAt' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toIso8601String()
@@ -53,6 +57,6 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Successfully logged out'
-        ]);
+        ], 200);
 	}
 }
